@@ -1,0 +1,23 @@
+﻿<Page x:Class="MyKP_работа_с_БД.Pages.auto"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyKP_работа_с_БД.Pages"
+      mc:Ignorable="d" 
+            Height="auto" Width="300">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel Margin="15" >
+                <TextBlock Text="Введите имя (Логин)"/>
+                <TextBox Name="tbLogin"/>
+            </StackPanel>
+            <StackPanel Margin="15" >
+                <TextBlock Text="Введите пароль"/>
+                <PasswordBox Name="tbPassword"/>
+            </StackPanel>
+            <Button Content="Войти" Click="btnLogin_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

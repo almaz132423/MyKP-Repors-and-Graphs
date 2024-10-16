@@ -1,0 +1,92 @@
+﻿<Page x:Class="MyKP_работа_с_БД.Pages.ViewReport"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyKP_работа_с_БД.Pages"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ViewReport">
+    <Page.Resources>
+        <Style TargetType="TabItem">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Grid>
+                            <Border 
+                                Name="Border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="5,5,0,0" Padding="5">
+                                <ContentPresenter ContentSource="Header" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FFD700"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#4CAF50"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <TabControl HorizontalAlignment="Stretch">
+            <TabItem Header="Отчет в Word и Excel">
+                <StackPanel >
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <Button Content="Вывод в Word" Width="200"
+                            HorizontalAlignment="Left" Margin="5"
+                                Click="btnGenRepInWord_Click"/>
+                        <Button Content="Вывод в Excel" Width="200"
+                            HorizontalAlignment="Right" Margin="5"
+                                Click="btnGenRepInExcel_Click"/>
+                    </StackPanel>
+
+                    <DataGrid x:Name="ProductDataGrid" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Название" Width="auto"
+                                                Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Цена" Width="auto"
+                                                Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Категория" Width="auto"
+                                                Binding="{Binding Categories.Name}"/>
+                            <DataGridTextColumn Header="Описание" Width="auto"
+                                                Binding="{Binding Description}"/>
+                            <DataGridTextColumn Header="Изображение" Width="auto"
+                                                Binding="{Binding Image}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="График" Loaded="TabItem_Loaded" >
+                <Grid>
+                    <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Right">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Категории" Labels="{Binding Categories}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Средняя цена" LabelFormatter="{Binding Formatter}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

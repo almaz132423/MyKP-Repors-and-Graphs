@@ -1,0 +1,25 @@
+﻿<Window x:Class="MyKP_работа_с_БД.Autorization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyKP_работа_с_БД"
+        mc:Ignorable="d"
+                Title="Авторизация" Height="550" Width="350" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" >
+            <Button Content="Регистрация" Click="newUser_Click"
+                    Width="auto" HorizontalAlignment="Left" Margin="5"/>
+            <Button Content="Авторизация" Click="autoUser_Click"
+                    Width="auto" HorizontalAlignment="Right" Margin="5"/>
+        </Grid>
+
+        <Frame Name="FrameForLogin" Grid.Row="1"
+               NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

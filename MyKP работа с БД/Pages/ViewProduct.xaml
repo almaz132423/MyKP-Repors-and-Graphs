@@ -1,0 +1,69 @@
+﻿<Page x:Class="MyKP_работа_с_БД.Pages.ViewProduct"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyKP_работа_с_БД.Pages"
+      mc:Ignorable="d" 
+      MinHeight="450" MinWidth="950"
+      Title="ViewProduct" Loaded="Page_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <StackPanel Margin="35 0 0 0">
+                <TextBlock Text="Категория:"/>
+                <ComboBox Name="cbFilter" DropDownClosed="cbFilter_DropDownClosed"/>
+            </StackPanel>
+            <StackPanel Margin="35 0 0 0">
+                <TextBlock Text="Поиск:"  ToolTip="dffdf"/>
+                <TextBox MinWidth="550" Name="tbSearch" TextChanged="tbSearch_TextChanged"/>
+            </StackPanel>
+            <Button Content="Генерировать отчет" Click="btn_ReportClick" Margin="35 0 0 0"/>
+        </StackPanel>
+        <ListBox x:Name="lbProduct" Grid.Row="1" Background="Transparent"  ScrollViewer.CanContentScroll="False">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Image}" Grid.Column="0" Width="300" Height="250"/>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0 20 0 0">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Название: " />
+                                    <TextBlock Text="{Binding Name}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Описание: " />
+                                    <TextBlock Text="{Binding Description}" 
+                                               MinWidth="700" TextWrapping="Wrap"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Категория: " />
+                                    <TextBlock Text="{Binding Categories.Name}"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Price, StringFormat=Цена: 0.00 ₽}"/>
+                                <Separator/>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <Button Content="Удалить" Margin="5"
+                                            Click="btn_DeleteClick"/>
+                                    <Button Content="Изменить" Margin="5"
+                                            Click="btn_UpdateClick"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Добавить" Click="btn_AddClick"
+                Grid.Row="2" Width="175" Margin="10"
+                HorizontalAlignment="Right"/>
+    </Grid>
+</Page>
